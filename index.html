@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Михаил и Екатерина | Приглашение на свадьбу</title>
   <meta name="description" content="Свадебное приглашение Михаила и Екатерины">
+  <meta name="theme-color" content="#f8f5ef">
+  <meta name="application-name" content="𝓜𝓔">
+  <meta name="apple-mobile-web-app-title" content="𝓜𝓔">
+  <meta property="og:site_name" content="𝓜𝓔">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Михаил и Екатерина — 12.06.26">
+  <meta property="og:description" content="Приглашаем вас на главное событие в нашей жизни - день свадьбы!">
+  <meta property="og:image" content="assets/og-preview.svg">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Михаил и Екатерина — 12.06.26">
+  <meta name="twitter:description" content="Приглашаем вас на главное событие в нашей жизни - день свадьбы!">
+  <meta name="twitter:image" content="assets/og-preview.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f8f5ef'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Playfair Display,serif' font-size='30' fill='%233b332e'%3E%F0%9D%93%9C%F0%9D%93%94%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
@@ -509,6 +526,14 @@
       margin-top: 14px;
     }
 
+    .wishes-link {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      word-break: break-word;
+    }
+
     .dress-wrap {
       padding: 0 0 38px;
     }
@@ -554,58 +579,51 @@
     }
 
     .dress-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: clamp(14px, 3vw, 20px) clamp(10px, 2vw, 16px);
-      max-width: 600px;
+      display: grid;
+      gap: 14px;
+      max-width: 620px;
       margin: 18px auto 0;
     }
 
+    .dress-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .dress-row-label {
+      width: 100%;
+      margin: 0 0 2px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
     .dress-swatch {
-      width: clamp(92px, 19vw, 128px);
+      width: clamp(58px, 12vw, 78px);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      border: 0;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 7px 16px rgba(61, 51, 46, 0.14);
-      background: #d7c9bf;
+      box-shadow:
+        0 7px 16px rgba(61, 51, 46, 0.12),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+      background:
+        radial-gradient(circle at 68% 76%, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0) 52%),
+        linear-gradient(145deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.12)),
+        var(--swatch-color);
     }
 
-    .dress-swatch::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: var(--swatch-image);
-      background-size: cover;
-      background-position: center;
-      transform: var(--swatch-transform, none);
-      filter: var(--swatch-filter, none);
-      transform-origin: center;
-    }
+    .swatch-w-1 { --swatch-color: #DACEB9; }
+    .swatch-w-2 { --swatch-color: #E9B4BA; }
+    .swatch-w-3 { --swatch-color: #FEEDD8; }
+    .swatch-w-4 { --swatch-color: #E7C7B3; }
+    .swatch-w-5 { --swatch-color: #C59174; }
 
-    .swatch-1 {
-      --swatch-image: url("assets/photo_1.jpg");
-    }
-
-    .swatch-2 {
-      --swatch-image: url("assets/photo_2.jpg");
-    }
-
-    .swatch-3 {
-      --swatch-image: url("assets/photo_3.jpg");
-    }
-
-    .swatch-4 {
-      --swatch-image: url("assets/photo_4.jpg");
-    }
-
-    .swatch-5 {
-      --swatch-image: url("assets/photo_4.jpg");
-      --swatch-filter: brightness(1.14) saturate(0.92) contrast(0.95);
-      --swatch-transform: scale(-1.06, 1.06);
-    }
+    .swatch-m-1 { --swatch-color: #FFFFFF; }
+    .swatch-m-2 { --swatch-color: #0E120E; }
 
     .palette-1 { background: #e6ebdc; }
     .palette-2 { background: #d2dcc8; }
@@ -1382,6 +1400,7 @@
       <h2 class="wishes-title">Детали<br>и пожелания</h2>
       <p class="wishes-text">Просим не отягощать себя выбором цветов и подарков, наилучший подарок для нас - ваше присутствие и теплые слова!</p>
       <p class="wishes-text">Если хотите преподнести ценный и нужный подарок, мы будем очень благодарны за вклад в бюджет нашей молодой семьи.</p>
+      <p class="wishes-text">Самое необходимое: <a class="wishes-link" href="https://ohmywishes.com/users/katerinabelitskaya/lists/4069c8034731f43946455928" target="_blank" rel="noopener noreferrer">https://ohmywishes.com/users/katerinabelitskaya/lists/4069c8034731f43946455928</a></p>
     </div>
   </section>
 
@@ -1396,11 +1415,19 @@
       <p class="dress-note">Благодарим вас за внимание к этой детали - вместе мы создадим идеальную картину нашего дня.</p>
 
       <div class="dress-grid">
-        <div class="dress-swatch swatch-1" aria-label="Фото ткани 1"></div>
-        <div class="dress-swatch swatch-2" aria-label="Фото ткани 2"></div>
-        <div class="dress-swatch swatch-3" aria-label="Фото ткани 3"></div>
-        <div class="dress-swatch swatch-4" aria-label="Фото ткани 4"></div>
-        <div class="dress-swatch swatch-5" aria-label="Фото ткани 5"></div>
+        <div class="dress-row" aria-label="Цвета дресс-кода для женщин">
+          <p class="dress-row-label">Женщины</p>
+          <div class="dress-swatch swatch-w-1" aria-label="Цвет #DACEB9"></div>
+          <div class="dress-swatch swatch-w-2" aria-label="Цвет #E9B4BA"></div>
+          <div class="dress-swatch swatch-w-3" aria-label="Цвет #FEEDD8"></div>
+          <div class="dress-swatch swatch-w-4" aria-label="Цвет #E7C7B3"></div>
+          <div class="dress-swatch swatch-w-5" aria-label="Цвет #C59174"></div>
+        </div>
+        <div class="dress-row" aria-label="Цвета дресс-кода для мужчин">
+          <p class="dress-row-label">Мужчины</p>
+          <div class="dress-swatch swatch-m-1" aria-label="Цвет #FFFFFF"></div>
+          <div class="dress-swatch swatch-m-2" aria-label="Цвет #0E120E"></div>
+        </div>
       </div>
     </div>
   </section>
