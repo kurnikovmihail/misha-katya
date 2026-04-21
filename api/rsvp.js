@@ -45,7 +45,7 @@ async function readBody(req) {
   return {};
 }
 
-exports.handler = async (req, res) => {
+module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
 
   if (req.method !== 'POST') {
