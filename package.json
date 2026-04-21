@@ -1,0 +1,8 @@
+{
+  "name": "misha-katya-invitation",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "resend": "^4.5.1"
+  }
+}

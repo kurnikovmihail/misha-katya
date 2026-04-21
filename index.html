@@ -717,6 +717,22 @@
       gap: 12px;
     }
 
+    .guest-status {
+      min-height: 1.4em;
+      margin-top: 2px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      line-height: 1.4;
+    }
+
+    .guest-status.is-error {
+      color: #9a4b4b;
+    }
+
+    .guest-status.is-success {
+      color: #3f6b49;
+    }
+
     .guest-label {
       display: block;
       color: var(--text-muted);
@@ -1376,19 +1392,15 @@
       <h2 class="timing-title">Тайминг дня</h2>
       <ul class="timing-list">
         <li>
-          <span class="timing-item-title">12:00 - Венчание</span>
+          <span class="timing-item-title">11:00 - Венчание</span>
           <span class="timing-item-note">Для нас очень важно, чтобы нас сочетали в церкви, разделите с нами этот трепетный момент.</span>
         </li>
         <li>
-          <span class="timing-item-title">16:30 - Фуршет</span>
-          <span class="timing-item-note">Встречаемся, общаемся и ждем начала торжества.</span>
-        </li>
-        <li>
-          <span class="timing-item-title">15:00 - Банкет</span>
+          <span class="timing-item-title">15:30 - Банкет</span>
           <span class="timing-item-note">Будет много еды, танцев, поздравлений и, конечно же, любви.</span>
         </li>
         <li>
-          <span class="timing-item-title">21:00 - Завершение</span>
+          <span class="timing-item-title">20:00 - Завершение</span>
           <span class="timing-item-note">Очень надеемся, что вы надолго сохраните теплые воспоминания этого дня.</span>
         </li>
       </ul>
@@ -1439,7 +1451,7 @@
         <p class="guest-lead">Для нас будет большой радостью разделить этот особенный день вместе с вами. Пожалуйста, подтвердите свое присутствие.</p>
         <p class="guest-deadline">Подтвердите свое присутствие до 12.04</p>
 
-        <form class="guest-form" action="mailto:mariaevleeva@gmail.com" method="post" enctype="text/plain">
+        <form class="guest-form" action="/api/rsvp" method="post">
           <div>
             <label class="guest-label" for="guest-name">Имя и фамилия (если несколько людей, пишите количество)</label>
             <input class="guest-input" id="guest-name" name="Имя и фамилия" type="text" required>
@@ -1462,6 +1474,8 @@
           <button class="guest-submit" type="submit">Отправить</button>
         </form>
 
+        <p class="guest-status" id="guest-status" aria-live="polite"></p>
+
         <div class="guest-contacts">
           <h3 class="guest-contacts-title">Контакты</h3>
           <p class="guest-contacts-text">Если у вас возникнут вопросы, касающиеся торжества, всегда можно обратиться к нашему чудесному организатору:</p>
@@ -1473,6 +1487,50 @@
       </div>
     </div>
   </section>
+
+  <script>
+    (() => {
+      const form = document.querySelector('.guest-form');
+      const status = document.getElementById('guest-status');
+
+      if (!form || !status) {
+        return;
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        status.className = 'guest-status';
+        status.textContent = 'Отправляем подтверждение...';
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            throw new Error(data.error || 'Не удалось отправить подтверждение');
+          }
+
+          status.classList.add('is-success');
+          status.textContent = 'Спасибо, подтверждение отправлено.';
+          form.reset();
+        } catch (error) {
+          status.classList.add('is-error');
+          status.textContent = error.message || 'Не удалось отправить подтверждение.';
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
